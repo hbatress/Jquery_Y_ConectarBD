@@ -1,4 +1,3 @@
-const http = require('http');
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
@@ -17,16 +16,7 @@ if (err) {
   }
 });
 
-// Realizar una consulta de selección
-connection.query('SELECT * FROM personas', (error, results) => {
-    if (error) {
-        console.error('Error al realizar la consulta: ', error);
-        return;
-    }
-    console.log('Resultados de la consulta: ', results);
-    });
-
-    // Datos a insertar
+// Datos a insertar
 const id = '4';
 const nombre = 'joel';
 const apellido = 'Arriola';
@@ -61,21 +51,3 @@ connection.query(checkIdQuery, [id], (checkError, checkResults) => {
     });
     }
 });
-
-
-// Valor para la condición de eliminación (ID a eliminar)
-const valorAEliminar = 5; // ID que deseas eliminar
-
-// Consulta de eliminación basada en el ID
-const deleteQuery = 'DELETE FROM personas WHERE id = ?';
-// Realizar la eliminación
-connection.query(deleteQuery, [valorAEliminar], (error, results) => {
-  if (error) {
-    console.error('Error al eliminar datos: ', error);
-    return;
-  }
-  console.log('Dato con ID', valorAEliminar, 'eliminado con éxito.');
-});
-
-// Cerrar la conexión cuando hayas terminado
-connection.end();
