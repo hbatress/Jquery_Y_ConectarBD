@@ -26,7 +26,7 @@ connection.query('SELECT * FROM personas', (error, results) => {
     console.log('Resultados de la consulta: ', results);
     });
 
-    // Datos a insertar
+// Datos a insertar
 const id = '4';
 const nombre = 'joel';
 const apellido = 'Arriola';
