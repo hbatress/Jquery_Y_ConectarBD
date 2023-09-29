@@ -18,8 +18,8 @@ if (err) {
 
 // Datos a insertar
 const id = '4';
-const nombre = 'joel';
-const apellido = 'Arriola';
+const nombre = 'Carlos';
+const apellido = 'Pérez';
 
 // Consulta para verificar si el ID ya existe
 const checkIdQuery = 'SELECT id FROM personas WHERE id = ?';
