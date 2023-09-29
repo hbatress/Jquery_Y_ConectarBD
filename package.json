@@ -2,7 +2,7 @@
   "name": "jquery_bd",
   "version": "1.0.0",
   "description": "Mi Proyecto de union base de datos",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

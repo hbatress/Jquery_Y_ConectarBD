@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informacion</title>
+    <title>Formulario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Insertar Datos</h1>
+    <h1>Formulario</h1>
     <form id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="text" id="apellido" placeholder="Apellido">
-        <button type="submit">Insertar</button>
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id" required><br><br> <!-- Cambiado a tipo "number" -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+        <input type="submit" value="Enviar">
     </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="clliente.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#formulario").submit(function(event) {
+                event.preventDefault();
+                var id = parseInt($("#id").val()); // Convertir a número entero
+                var nombre = $("#nombre").val();
+                var apellido = $("#apellido").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/estudiante",
+                    data: { id: id, nombre: nombre, apellido: apellido },
+                    success: function(response) {
+                        alert(response.mensaje);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        alert("Error al enviar los datos.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
