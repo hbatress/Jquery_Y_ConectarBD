@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
-const port = 3001; // Puedes cambiar el puerto si lo deseas
+const port = 444; // Puedes cambiar el puerto si lo deseas
 
 // Configura la conexión a la base de datos MySQL
 const db = mysql.createConnection({

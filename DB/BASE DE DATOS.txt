@@ -1,0 +1,79 @@
+-- Tabla para la entidad Usuario
+CREATE TABLE Usuario (
+    IDUsuario INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    CorreoElectronico VARCHAR(255),
+    Contraseña VARCHAR(255)
+
+);
+
+-- Tabla para la entidad Película
+CREATE TABLE Pelicula (
+    IDPelicula INT PRIMARY KEY,
+    Titulo VARCHAR(255),
+    Genero VARCHAR(255),
+    AnioLanzamiento INT
+
+);
+
+-- Tabla para la entidad Serie de TV
+CREATE TABLE SerieTV (
+    IDSerieTV INT PRIMARY KEY,
+    Titulo VARCHAR(255),
+    Genero VARCHAR(255),
+    AnioLanzamiento INT
+
+);
+
+-- Tabla para la entidad Categoría
+CREATE TABLE Categoria (
+    IDCategoria INT PRIMARY KEY,
+    NombreCategoria VARCHAR(255),
+    Descripcion VARCHAR(255)
+
+);
+
+-- Tabla para la entidad Lista de Reproducción
+CREATE TABLE ListaReproduccion (
+    IDListaReproduccion INT PRIMARY KEY,
+    NombreLista VARCHAR(255),
+    Descripcion VARCHAR(255),
+    IDUsuario INT,  -- Esta columna establece la relación con la entidad Usuario
+    FOREIGN KEY (IDUsuario) REFERENCES Usuario(IDUsuario)
+);
+
+-- Tabla de relación para vincular Películas a Listas de Reproducción
+CREATE TABLE ListaReproduccionPelicula (
+    IDListaReproduccion INT,
+    IDPelicula INT,
+    PRIMARY KEY (IDListaReproduccion, IDPelicula),
+    FOREIGN KEY (IDListaReproduccion) REFERENCES ListaReproduccion(IDListaReproduccion),
+    FOREIGN KEY (IDPelicula) REFERENCES Pelicula(IDPelicula)
+);
+
+-- Tabla de relación para vincular Series de TV a Listas de Reproducción
+CREATE TABLE ListaReproduccionSerieTV (
+    IDListaReproduccion INT,
+    IDSerieTV INT,
+    PRIMARY KEY (IDListaReproduccion, IDSerieTV),
+    FOREIGN KEY (IDListaReproduccion) REFERENCES ListaReproduccion(IDListaReproduccion),
+    FOREIGN KEY (IDSerieTV) REFERENCES SerieTV(IDSerieTV)
+);
+
+-- Tabla de relación para vincular Categorías a Películas
+CREATE TABLE PeliculaCategoria (
+    IDPelicula INT,
+    IDCategoria INT,
+    PRIMARY KEY (IDPelicula, IDCategoria),
+    FOREIGN KEY (IDPelicula) REFERENCES Pelicula(IDPelicula),
+    FOREIGN KEY (IDCategoria) REFERENCES Categoria(IDCategoria)
+);
+
+-- Tabla de relación para vincular Categorías a Series de TV
+CREATE TABLE SerieTVCategoria (
+    IDSerieTV INT,
+    IDCategoria INT,
+    PRIMARY KEY (IDSerieTV, IDCategoria),
+    FOREIGN KEY (IDSerieTV) REFERENCES SerieTV(IDSerieTV),
+    FOREIGN KEY (IDCategoria) REFERENCES Categoria(IDCategoria)
+);
